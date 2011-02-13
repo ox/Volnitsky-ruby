@@ -1,0 +1,48 @@
+Volnitsky Substring Search Algorithm
+Created by: 
+	Leonid Volnitsky
+	<leonid@volnitsky.com>
+	10 Jan 2011
+	
+Adapted to Ruby by:
+	Artem Titoulenko
+	<artem.titoulenko@gmail.com>
+	Feb 13, 2011
+	
+	
+The Project
+-----------
+
+I had found this nifty search algorithm through Hacker News and after a few
+hours I had a working version of the algorithm in Ruby, my language of 
+choice. This is still a rough version of the module but it should suffice.
+
+
+Usage
+-----
+
+Included with the source is a test_volnitsky.rb file which shows the general
+way that things work. Here is another example:
+
+require "./volnitsky"
+include Volnitsky #loads in the module
+
+S = "Some text that you want to search for"
+SS = "search for"
+
+found_at_position = search(S, SS) #the position in the text that SS was found @
+
+	
+Algorithm
+---------
+
+	Substring (needle) SS of length M is sought in source (haystack) string S of length N. Algorithm sequentially steps through string S, and probes word W (2 or more bytes) if it belongs to SS.
+	Step length is    SSsize - Wsize + 1.
+	The Wsize is small number (typically 2, 4 or 8 bytes).
+	Test if probed word belongs to SS is done in structure, similar to hash table with open addressing which is generated in preprocessed step.
+	Empty hash cell indicates that W does not belong to SS. Value in hash cell tells how far W is from SS head.
+	After it was determined that probed word belongs to SS, we find address of substring at    probed_position - hash_cell_value    and compare it with SS. If equal — SS is found.
+	This algorithm especially well suited for long S, multi-substrings, small alphabet, regex/parsing and search for common substrings.
+
+Full details may be found at http://volnitsky.com/project/str_search/
+
