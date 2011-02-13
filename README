@@ -12,15 +12,19 @@ Adapted to Ruby by:
 	
 The Project
 -----------
-
 I had found this nifty search algorithm through Hacker News and after a few
 hours I had a working version of the algorithm in Ruby, my language of 
 choice. This is still a rough version of the module but it should suffice.
 
 
+Building
+--------
+Run ./build_and_test to construct the module in the current folder. Use
+make install to install it for system-wide usage. 
+
+
 Usage
 -----
-
 Included with the source is a test_volnitsky.rb file which shows the general
 way that things work. Here is another example:
 
@@ -35,7 +39,6 @@ found_at_position = search(S, SS) #the position in the text that SS was found @
 	
 Algorithm
 ---------
-
 	Substring (needle) SS of length M is sought in source (haystack) string S of length N. Algorithm sequentially steps through string S, and probes word W (2 or more bytes) if it belongs to SS.
 	Step length is    SSsize - Wsize + 1.
 	The Wsize is small number (typically 2, 4 or 8 bytes).
